@@ -1,2 +1,16 @@
+# Idea
+.idea
+.vscode
+
 # Vercel
 .vercel
+
+# Composer
+/vendor
+composer.lock
+
+# Assets
+
+# Misc
+.env
+.phpunit.result.cache
