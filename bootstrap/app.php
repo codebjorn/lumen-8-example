@@ -110,6 +110,9 @@ $app->register(App\Providers\MemojiServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
+$app->router->group([],function () {
+    require __DIR__.'/../routes/web.php';
+});
 
 $app->router->group(['prefix' => 'api'],function () {
     require __DIR__.'/../routes/api.php';
