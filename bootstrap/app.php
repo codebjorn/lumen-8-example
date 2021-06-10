@@ -100,7 +100,7 @@ $app->register(\NunoMaduro\PhpInsights\Application\Adapters\Laravel\InsightsServ
 |
 */
 
-$app->router->group([],function () {
+$app->router->group(['prefix' => 'api'],function () {
     require __DIR__.'/../routes/api.php';
 });
 
