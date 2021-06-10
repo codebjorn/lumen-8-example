@@ -87,7 +87,7 @@ $app->configure('insights');
 
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\MemojiServiceProvider::class);
-$app->register(NunoMaduro\PhpInsights\Application\Adapters\Laravel\InsightsServiceProvider::class);
+$app->register(\NunoMaduro\PhpInsights\Application\Adapters\Laravel\InsightsServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
