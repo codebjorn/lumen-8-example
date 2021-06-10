@@ -57,7 +57,6 @@ $app->singleton(
 */
 
 $app->configure('memoji');
-$app->configure('insights');
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +75,19 @@ $app->configure('insights');
 
 /*
 |--------------------------------------------------------------------------
+| Register PHP Insights
+|--------------------------------------------------------------------------
+|
+| Here we will register all related to phpinsights by Nuno Maduro
+|
+*/
+if(env('APP_ENV') !== 'production') {
+    $app->register(\NunoMaduro\PhpInsights\Application\Adapters\Laravel\InsightsServiceProvider::class);
+    $app->configure('insights');
+}
+
+/*
+|--------------------------------------------------------------------------
 | Register Service Providers
 |--------------------------------------------------------------------------
 |
@@ -87,7 +99,6 @@ $app->configure('insights');
 
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\MemojiServiceProvider::class);
-$app->register(\NunoMaduro\PhpInsights\Application\Adapters\Laravel\InsightsServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
