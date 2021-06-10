@@ -2,10 +2,15 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpFoundation\Response as BaseResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
@@ -28,27 +33,37 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Throwable  $exception
+     * @param  Throwable  $e
+     *
      * @return void
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    public function report(Throwable $exception)
+    public function report(Throwable $e)
     {
-        parent::report($exception);
+        parent::report($e);
     }
 
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     * @param  Request  $request
+     * @param  Throwable  $e
      *
-     * @throws \Throwable
+     * @return Response|JsonResponse
+     *
+     * @throws Throwable
      */
-    public function render($request, Throwable $exception)
+    public function render($request, Throwable $e): Response | JsonResponse
     {
-        return parent::render($request, $exception);
+        parent::render($request, $e);
+
+        $status = $e->getCode() ?: BaseResponse::HTTP_INTERNAL_SERVER_ERROR;
+        $data = [
+            'message' => $e->getMessage(),
+            'file' => "{$e->getFile()}({$e->getLine()})",
+            'trace' => $e->getTraceAsString(),
+        ];
+        return response()->json($data, $status);
     }
 }

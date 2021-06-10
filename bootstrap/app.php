@@ -22,10 +22,7 @@ date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
-
 $app->withFacades();
-
-// $app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +57,7 @@ $app->singleton(
 */
 
 $app->configure('memoji');
+$app->configure('insights');
 
 /*
 |--------------------------------------------------------------------------
@@ -76,10 +74,6 @@ $app->configure('memoji');
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
-
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -91,9 +85,9 @@ $app->configure('memoji');
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
+$app->register(App\Providers\MemojiServiceProvider::class);
+$app->register(NunoMaduro\PhpInsights\Application\Adapters\Laravel\InsightsServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -106,9 +100,7 @@ $app->configure('memoji');
 |
 */
 
-$app->router->group([
-    'namespace' => 'App\Http\Controllers',
-], function ($router) {
+$app->router->group([],function () {
     require __DIR__.'/../routes/api.php';
 });
 
