@@ -24,18 +24,18 @@ class GetMemojiesByGender
         string $gender,
         MemojiRepository $repository
     ): JsonResponse {
-        $this->validate($gender);
+        $this->validate($gender, $repository);
 
         return $this->response($repository->getAsArray($gender));
     }
 
     /**
      * @param  string  $gender
-     *
+     * @param  MemojiRepository  $repository
      * @throws MemojiNotFound
      */
-    private function validate(string $gender): void
+    private function validate(string $gender, MemojiRepository $repository): void
     {
-        GenderValidator::validate($gender);
+        GenderValidator::validate($gender, $repository);
     }
 }

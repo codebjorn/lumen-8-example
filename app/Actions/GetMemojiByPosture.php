@@ -74,7 +74,7 @@ class GetMemojiByPosture
         string $posture,
         MemojiRepository $repository
     ): void {
-        GenderValidator::validate($gender);
+        GenderValidator::validate($gender, $repository);
         NameValidator::validate($repository->get($gender), $name);
 
         $memoji = $repository->get($gender)->get($name);

@@ -9,14 +9,13 @@ class GenderValidator
 {
     /**
      * @param  string  $name
-     *
+     * @param  MemojiRepository  $repository
      * @return bool
      *
      * @throws MemojiNotFound
      */
-    public static function validate(string $name): bool
+    public static function validate(string $name, MemojiRepository $repository): bool
     {
-        $repository = app(MemojiRepository::class);
         if (! $repository->offsetExists($name)) {
             throw new MemojiNotFound('Gender not exists');
         }
