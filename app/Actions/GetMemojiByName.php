@@ -31,7 +31,7 @@ class GetMemojiByName
      */
     private function validate(string $gender, string $name, MemojiRepository $repository): void
     {
-        GenderValidator::validate($gender);
+        GenderValidator::validate($gender, $repository);
         NameValidator::validate($repository->get($gender), $name);
     }
 }

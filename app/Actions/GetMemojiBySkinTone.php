@@ -49,7 +49,7 @@ class GetMemojiBySkinTone
         string $skinTone,
         MemojiRepository $repository
     ): void {
-        GenderValidator::validate($gender);
+        GenderValidator::validate($gender, $repository);
         NameValidator::validate($repository->get($gender), $name);
         SkinToneValidator::validate($repository->get($gender)->get($name), $skinTone);
     }
