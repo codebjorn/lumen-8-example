@@ -10,6 +10,7 @@ class GenderValidator
     /**
      * @param  string  $name
      * @param  MemojiRepository  $repository
+     *
      * @return bool
      *
      * @throws MemojiNotFound

@@ -32,6 +32,7 @@ class GetMemojiesByGender
     /**
      * @param  string  $gender
      * @param  MemojiRepository  $repository
+     *
      * @throws MemojiNotFound
      */
     private function validate(string $gender, MemojiRepository $repository): void
