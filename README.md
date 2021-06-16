@@ -1,24 +1,63 @@
+<p> 
+<img width="100" src="https://i.imgur.com/8hHhvaT.png" />
+</p>
+
 # Memoji API
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+![Heroku](https://heroku-badge.herokuapp.com/?app=memoji-api)
+![License](https://img.shields.io/packagist/l/laravel/framework)
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+Memoji API is small application made using Lumen framework.
 
-## Official Documentation
+## Purpose
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+Just for fun. But mostly this project is made for understanding better how lumen works.
 
-## Contributing
+But also this API can be used as tool to provide avatar in your project.
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## In a nutshell
 
-## Security Vulnerabilities
+API provides just endpoints to get different memojies that are saved in png format in `resources/memojies`
+The structure itself is:
+```
+|-- resources                   
+|   |--memojies            
+|      |--<gender>          
+|         |--<name>   
+|            |--<skin tone>   
+|               |--happy.png   
+|               |--hugging.png   
+|               |--thinking.png   
+|               |--winking.png   
+|               |--<custom posture>.png   
+|
+```
+## How to use
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+1. Add new memoji in `config/memoji.php` to specific gender:
+
+```php
+    'men' => [
+        ...
+        'jack' => [
+            'name' => 'jack',
+            //If you have custom postures you can add them here
+            'postures' => ['nice']
+        ],
+    ],
+```
+
+2. Add image for new memoji in `resources/memojies/<gender>/<name>/<skinTone>/<posture>.png`
+
+### Security
+
+If you discover any security related issues, please email quotesun@gmail.com instead of using the issue tracker.
+
+## Credits
+
+- [Dorin Lazar](https://github.com/codebjorn)
+- [All Contributors](../../contributors)
 
 ## License
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The MIT License (MIT).
